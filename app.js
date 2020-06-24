@@ -1,5 +1,4 @@
 const {mongoose} = require('./dbconfig'),
-    createError = require('http-errors'),
     express = require('express'),
     path = require('path'),
     bodyParser = require('body-parser'),
