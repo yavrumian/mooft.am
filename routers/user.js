@@ -24,5 +24,23 @@ router.post('/reg',[
         .isLength({min:6})
 ], checkError, controller.reg);
 
+router.post('/login', [
+	body('username', 'This property can not be empty')
+        .not()
+        .isEmpty(),
+	body('password', 'This property can not be empty')
+        .not()
+        .isEmpty()
+], checkError, controller.auth)
 
+router.get('/check', controller.check)
+
+router.get('/getUser',
+		query('id', 'This field must be valid Object ID of following models: User')
+			.not().isEmpty().bail()
+			.isMongoId().bail()
+			.not().custom(val => validator.isUnique('User', {_id: val})),
+		controller.getUser)
+
+router.get('/logout', controller.logout)
 module.exports = router;
