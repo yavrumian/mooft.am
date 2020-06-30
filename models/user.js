@@ -11,8 +11,9 @@ const schema = new Schema({
     age: {type: Number, min: 18, required: true},
     gender: {type: String, enum: ['m', 'f']},
     password: {type: String, required: true, trim: true},
-    credits: Number,
-    phone: {type: Number, required: true}
+    credits: {type: Number, default: 3},
+    phone: {type: Number, required: true},
+    history: [{type: mongoose.Schema.Types.ObjectID, ref: 'Mooft', required: true}],
 });
 
 schema.pre('save', async function(next) {
