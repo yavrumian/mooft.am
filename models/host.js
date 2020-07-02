@@ -1,6 +1,5 @@
-const _ = require('lodash'),
-    mongoose = require('mongoose'),
-    Schema = mongoose.Schema,;
+const mongoose = require('mongoose'),
+    Schema = mongoose.Schema;
 
 const schema = new Schema({
     user: {type: mongoose.Schema.Types.ObjectID, ref: 'User', required: true},
@@ -8,6 +7,11 @@ const schema = new Schema({
         lat: Number,
         long: Number
     },
+    parameters: {
+        tar: Number,
+        nicotine: Number
+    },
+    desc: String,
     count: Number,
     type: String
 });

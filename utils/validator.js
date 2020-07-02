@@ -1,10 +1,10 @@
 const mongoose = require('mongoose')
 
-exports.isUnique = async(model, query) => {
+exports.exists = async(model, query) => {
     try {
         const result = await mongoose.model(model).findOne(query);
-        if(result) throw false
-        return true
+        if(result) return true
+        throw false
     }catch(e) {
         console.log(e);
         throw e

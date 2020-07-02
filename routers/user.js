@@ -9,7 +9,7 @@ const express = require('express'),
 router.post('/reg',[
     body('username', 'String from 4 characters to 20')
         .isLength({min: 4, max: 20})
-        .custom(val => validator.isUnique('User', {username: val}))
+        .not().custom(val => validator.exists('User', {username: val}))
         .withMessage('username already exists'),
     body('fullname', 'String from 5 to 50 characters')
         .isLength({min: 5, max: 50}),
@@ -39,7 +39,7 @@ router.get('/getUser',
 		query('id', 'This field must be valid Object ID of following models: User')
 			.not().isEmpty().bail()
 			.isMongoId().bail()
-			.not().custom(val => validator.isUnique('User', {_id: val})),
+			.custom(val => validator.exists('User', {_id: val})),
 		controller.getUser)
 
 router.get('/logout', controller.logout)

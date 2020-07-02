@@ -1,6 +1,5 @@
-const _ = require('lodash'),
-    mongoose = require('mongoose'),
-    Schema = mongoose.Schema,;
+const mongoose = require('mongoose'),
+    Schema = mongoose.Schema;
 
 const schema = new Schema({
     from: {type: mongoose.Schema.Types.ObjectID, ref: 'User', required: true},
